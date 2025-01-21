@@ -1,0 +1,576 @@
+<!doctype html>
+<html>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+       
+       .warning-link {
+            color: #dc3545 !important;
+            font-weight: bold !important;
+            animation: pulse 2s infinite;
+        }
+
+        .warning-link:hover {
+            color: #bd2130 !important;
+            text-decoration: underline !important;
+        }
+
+        .upload-link {
+            color: #007bff !important;
+            font-weight: bold !important;
+            transition: all 0.3s ease;
+        }
+
+        .upload-link:hover {
+            color: #0056b3 !important;
+            text-decoration: underline !important;
+            transform: translateY(-2px);
+        }
+
+        
+          .brand-logo {
+            font-size: 1.8rem !important;
+            font-weight: 800 !important;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            padding: 5px 15px !important;
+            border-radius: 10px;
+            background: linear-gradient(45deg, #00b4db, #0083B0);  /* 하늘색 그라데이션 */
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .brand-logo:hover {
+            transform: scale(1.05);
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+        }
+
+        .brand-logo::before {
+            content: "📚";
+            margin-right: 8px;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+            /* 기존 스타일 유지 */
+    .logout-link {
+        color: #6c757d !important;
+        font-weight: bold !important;
+        transition: all 0.3s ease;
+    }
+
+    .logout-link:hover {
+        color: #5a6268 !important;
+        transform: translateY(-2px);
+    }
+
+    .user-section {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .current-user {
+        color: #495057;
+        font-family: 'Noto Sans KR', sans-serif;
+        font-size: 0.9rem;
+    }
+
+    .current-user strong {
+        color: #00b4db;
+        font-weight: bold;
+    }
+
+    .logout-btn {
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-weight: bold;
+        font-size: 0.9rem;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .logout-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+
+    @media (max-width: 768px) {
+        .user-section {
+            margin-top: 10px;
+            flex-direction: column;
+            gap: 10px;
+        }
+    }
+        
+    .thinking-link {
+        color: #6c757d !important;
+        font-weight: bold !important;
+        transition: all 0.3s ease;
+        opacity: 0.8;
+    }
+
+    .thinking-link:hover {
+        color: #5a6268 !important;
+        transform: translateY(-2px);
+        opacity: 1;
+    }
+
+    .thinking-animation {
+        animation: thinking 1s infinite;
+    }
+
+    @keyframes thinking {
+        0% { transform: rotate(0deg); }
+        25% { transform: rotate(-10deg); }
+        75% { transform: rotate(10deg); }
+        100% { transform: rotate(0deg); }
+    }
+
+    </style>
+    <title>지비위키</title>
+    
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+          <a class="navbar-brand brand-logo" href="#">지비위키</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav mx-auto">
+                  <li class="nav-item">
+                      <a class="nav-link upload-link" href="/write">📝 논란 업로드</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link warning-link" href="/warning">⚠️ 주의할 점</a>
+                  </li>
+                  <li class="nav-item"></li>
+                    <a class="nav-link thinking-link" href="#" onclick="showThinking(event)">🤔 고민중...</a>
+                </li>
+              </ul>
+              <div class="user-section">
+                  <span class="current-user">👤 <strong id="currentUsername"></strong> 님</span>
+                  <button class="btn btn-outline-danger logout-btn" onclick="handleLogout()">
+                      로그아웃
+                  </button>
+              </div>
+          </div>
+      </div>
+  </nav>
+            
+            
+          
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container">
+        <h1 class="display-4">크리스토퍼 놀란 감독도 놀라는 논란들</h1>
+        <p class="lead">인생을 살면서 기분을 나쁘게 하고 창백한 얼굴에 까만 정장을 입고 죄송합니다 영상을 찍을만한 논란 거리들을 모았어요</p>
+       
+      </div>
+
+      
+    </div>
+  </div>
+  <div class="container mt-4">
+    <h1 class="text-center mb-5">논란들</h1>
+    <div class="row">
+      <!-- 버비 섹션 -->
+      <div class="col-md-6 mb-4">
+        <div class="card shadow-sm">
+          <div class="card-header bg-dark text-white">
+            <h4 class="mb-0">버비</h4>
+          </div>
+          <div class="card-body">
+            <ul id="BeobiPosts" class="list-group"></ul>
+          </div>
+        </div>
+      </div>
+      <!-- 지니 섹션 -->
+      <div class="col-md-6 mb-4">
+        <div class="card shadow-sm">
+          <div class="card-header bg-success text-white">
+            <h4 class="mb-0">지니</h4>
+          </div>
+          <div class="card-body">
+            <ul id="JiniPosts" class="list-group"></ul>
+          </div>
+        </div>
+      </div>
+      <!-- 지비 섹션 -->
+      <div class="col-md-6 mb-4">
+        <div class="card shadow-sm">
+          <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">지비</h4>
+          </div>
+          <div class="card-body">
+            <ul id="JibiPosts" class="list-group"></ul>
+          </div>
+        </div>
+      </div>
+      <!-- 똥개 섹션 -->
+      <div class="col-md-6 mb-4">
+        <div class="card shadow-sm">
+          <div class="card-header bg-warning text-white">
+            <h4 class="mb-0">똥개</h4>
+          </div>
+          <div class="card-body">
+            <ul id="DdonggaePosts" class="list-group"></ul>
+          </div>
+        </div>
+      </div>
+      <!-- 서빈 섹션 -->
+      <div class="col-md-6 mb-4">
+        <div class="card shadow-sm">
+          <div class="card-header bg-danger text-white">
+            <h4 class="mb-0">서빈</h4>
+          </div>
+          <div class="card-body">
+            <ul id="SeobinPosts" class="list-group"></ul>
+          </div>
+        </div>
+      </div>
+      <!-- 남규 섹션 -->
+      <div class="col-md-6 mb-4">
+        <div class="card shadow-sm">
+          <div class="card-header bg-secondary text-white">
+            <h4 class="mb-0">남규</h4>
+          </div>
+          <div class="card-body">
+            <ul id="NamgyuPosts" class="list-group"></ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 mb-4">
+        <div class="card shadow-sm">
+          <div class="card-header bg-dark text-white">
+            <h4 class="mb-0">서연</h4>
+          </div>
+          <div class="card-body">
+            <ul id="SeoyeonPosts" class="list-group"></ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 mb-4">
+        <div class="card shadow-sm">
+          <div class="card-header bg-success text-white">
+            <h4 class="mb-0">유만</h4>
+          </div>
+          <div class="card-body">
+            <ul id="YuminPosts" class="list-group"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <head>
+    <!-- 기존 코드 유지 -->
+    <style>
+         .navbar {
+        padding: 15px 0;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .navbar-nav {
+        gap: 20px;  /* 메뉴 항목 사이 간격 */
+    }
+
+    .nav-link {
+        padding: 8px 16px !important;
+    }
+
+    .user-section {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .current-user {
+        color: #495057;
+        font-family: 'Noto Sans KR', sans-serif;
+        font-size: 0.95rem;
+        margin-right: 5px;
+    }
+
+    .current-user strong {
+        color: #00b4db;
+        font-weight: bold;
+    }
+
+    .logout-btn {
+        padding: 6px 16px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+
+    .logout-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 2px 4px rgba(220,53,69,0.2);
+    }
+
+    .brand-logo {
+        margin-right: 30px;
+    }
+
+    .upload-link, .warning-link {
+        border-radius: 20px;
+        transition: all 0.3s ease;
+    }
+
+    .upload-link:hover, .warning-link:hover {
+        background-color: rgba(0,0,0,0.05);
+    }
+
+    @media (max-width: 991px) {
+        .navbar-collapse {
+            margin-top: 15px;
+        }
+
+        .user-section {
+            margin-top: 15px;
+            justify-content: center;
+        }
+
+        .navbar-nav {
+            text-align: center;
+            margin: 15px 0;
+        }
+    }
+
+    .list-group-item {
+        border: none;
+        border-radius: 15px !important;
+        margin-bottom: 15px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+        padding: 20px;
+        background: white;
+    }
+
+    .list-group-item:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .post-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 12px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid #eee;
+    }
+
+    .post-title {
+        font-family: 'Poor Story', cursive;
+        font-size: 1.3rem;
+        color: #2c3e50;
+        margin-right: 10px;
+    }
+
+    .post-username {
+        font-family: 'Noto Sans KR', sans-serif;
+        background-color: #e3f2fd;
+        color: #1976d2;
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        font-weight: 500;
+    }
+
+    .post-content {
+        font-family: 'Noto Sans KR', sans-serif;
+        color: #444;
+        line-height: 1.6;
+        margin: 15px 0;
+        font-size: 1rem;
+    }
+
+    .post-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 15px;
+        padding-top: 10px;
+        border-top: 1px solid #eee;
+    }
+
+    .post-timestamp {
+        color: #888;
+        font-size: 0.85rem;
+    }
+
+    .delete-btn {
+        padding: 5px 15px;
+        border-radius: 15px;
+        font-size: 0.9rem;
+        transition: all 0.2s ease;
+    }
+
+    .delete-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 2px 4px rgba(220,53,69,0.2);
+    }
+    </style>
+</head>
+
+  </div>
+    
+    <script>
+       // 로그인 체크 및 사용자 이름 표시
+    const username = localStorage.getItem('username');
+    if (!username) {
+        window.location.href = '/login.html';
+    } else {
+        document.getElementById('currentUsername').textContent = username;
+    }
+
+    // 로그아웃 함수
+    function handleLogout() {
+        if(confirm('정말 로그아웃 하시겠습니까?')) {
+            localStorage.removeItem('username');
+            window.location.href = '/login.html';
+        }
+    }
+
+
+    fetch('/posts')
+        .then(response => response.json())
+        .then(posts => {
+            posts.forEach((post) => {
+                const listItem = document.createElement('li');
+                listItem.className = 'list-group-item';
+                
+                listItem.innerHTML = `
+                    <div class="post-header">
+                        <span class="post-title">📌 ${post.title}</span>
+                        <span class="post-username">👤 ${post.username}</span>
+                    </div>
+                    <div class="post-content">
+                        ${post.description}
+                    </div>
+                    <div class="post-footer">
+                        <span class="post-timestamp">
+                            ⏰ ${new Date(post.timestamp).toLocaleString()}
+                        </span>
+                        ${username.toLowerCase() === 'master' || post.username === username 
+                            ? `<button class="btn btn-outline-danger btn-sm delete-btn" onclick="deletePost('${post._id}', '${post.username}')">
+                                 🗑️ 삭제
+                               </button>` 
+                            : ''}
+                    </div>
+                `;
+
+                // 카테고리에 따라 추가
+                if (post.category === '버비') {
+                    document.getElementById('BeobiPosts').appendChild(listItem);
+                } else if (post.category === '지비') {
+                    document.getElementById('JibiPosts').appendChild(listItem);
+                } else if (post.category === '지니') {
+                    document.getElementById('JiniPosts').appendChild(listItem);
+                } else if (post.category === '서빈') {
+                    document.getElementById('SeobinPosts').appendChild(listItem);
+                } else if (post.category === '똥개') {
+                    document.getElementById('DdonggaePosts').appendChild(listItem);
+                } else if (post.category === '남규') {
+                    document.getElementById('NamgyuPosts').appendChild(listItem);
+                } else if (post.category === '서연') {
+                    document.getElementById('SeoyeonPosts').appendChild(listItem);
+                } else if (post.category === '유만') {
+                    document.getElementById('YuminPosts').appendChild(listItem);
+                }
+            });
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('게시물을 불러오는 중 오류가 발생했습니다.');
+        });
+        async function deletePost(postId, postUsername) {
+        if (confirm('정말 이 게시물을 삭제하시겠습니까?')) {
+            try {
+                const currentUsername = localStorage.getItem('username');
+                
+                // 권한 체크
+                if (currentUsername.toLowerCase() !== 'master' && currentUsername !== postUsername) {
+                    alert('삭제 권한이 없습니다.');
+                    return;
+                }
+
+                const response = await fetch(`/post/${postId}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username: currentUsername })
+                });
+
+                if (!response.ok) {
+                    throw new Error('삭제 실패');
+                }
+
+                alert('게시물이 삭제되었습니다.');
+                window.location.reload();
+                
+            } catch (error) {
+                console.error('삭제 오류:', error);
+                alert('게시물 삭제 중 오류가 발생했습니다.');
+            }
+        }
+    }
+
+
+        function showThinking(event) {
+        event.preventDefault();
+        const messages = [
+            "음... 뭘 추가하면 좋을까요? 🤔",
+            "아직 고민중입니다... 💭",
+            "좋은 아이디어 있으신가요? 💡",
+            "곧 추가될 예정입니다! ⏳",
+            "열심히 생각하는 중... 🧐",
+            "왜 자꾸 눌러보시는 거죠?😒",
+            "할 일이 없으신가요?😎",
+            "당신은 시간 낭비를 하고 계십니다😜",
+            "손가락 안아프신가요?👀",
+            "고양이가 머리를 하면? 미용~ 미용~🐱ㅋㅋ",
+            "엄마가 도둑질하면? 모서리👵ㅋㅋ",
+            "떡집 사장이 주식을 안 하는 이유는? 떡 상할까봐🥮ㅋㅋ",
+            "오리가 조용히 말하면? 덕수궁 수궁🦢ㅋㅋ",
+        ];
+        const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+        alert(randomMessage);
+        
+        // 이모지 애니메이션 효과
+        const emoji = event.target.querySelector('🤔');
+        if (emoji) {
+            emoji.classList.add('thinking-animation');
+            setTimeout(() => {
+                emoji.classList.remove('thinking-animation');
+            }, 1000);
+        }
+    }
+
+  </script>
+    </script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
+</html>
