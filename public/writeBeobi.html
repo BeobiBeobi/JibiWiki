@@ -19,7 +19,7 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         .card-header {
-            background-color: #007bff;
+            background-color: #686868;
             color: white;
             border-top-left-radius: 15px !important;
             border-top-right-radius: 15px !important;
@@ -48,6 +48,19 @@
             right: 20px;
             z-index: 1000;
         }
+        .btn-submit {
+        background: linear-gradient(45deg, #7f8c8d, #95a5a6) !important;  /* 회색 그라데이션 */
+        border: none !important;
+        color: white !important;
+        padding: 10px 20px;
+        transition: all 0.3s ease;
+    }
+
+    .btn-submit:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(127, 140, 141, 0.3);
+        background: linear-gradient(45deg, #6c7a7b, #7f8c8d) !important;  /* 더 진한 회색 그라데이션 */
+    }
     </style>
 </head>
 <body>
@@ -72,9 +85,9 @@
                         <label for="description">내용</label>
                         <textarea class="form-control" id="description" rows="5" required></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-submit btn-block">
-                        작성하기
-                    </button>
+                    <button type="submit" class="btn btn-secondary btn-submit btn-block">
+                      실체를 모두에게 알리기
+                  </button>
                 </form>
             </div>
         </div>
