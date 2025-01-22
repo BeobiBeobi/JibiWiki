@@ -63,31 +63,30 @@ app.get("/write/:name", (req, res) => {
 
 app.delete("/post/:id", async (req, res) => {
   try {
-    const { id } = req.params;
-    const { username } = req.body;
+      const { id } = req.params;
+      const { username } = req.body;
 
-    // master 계정 확인
-    if (username.toLowerCase() === 'master') {
+      // master 계정 확인
+      if (username === 'master@0422') {
+          await Post.findByIdAndDelete(id);
+          return res.status(200).json({ message: "게시물이 성공적으로 삭제되었습니다." });
+      }
+
+      // 일반 사용자의 경우 자신의 게시물만 삭제 가능
+      const post = await Post.findById(id);
+      if (!post) {
+          return res.status(404).json({ error: "게시물을 찾을 수 없습니다." });
+      }
+
+      if (post.username !== username) {
+          return res.status(403).json({ error: "삭제 권한이 없습니다." });
+      }
+
       await Post.findByIdAndDelete(id);
-      return res.json({ message: "게시물이 성공적으로 삭제되었습니다." });
-    }
-
-    // 일반 사용자의 경우 자신의 게시물만 삭제 가능
-    const post = await Post.findById(id);
-    
-    if (!post) {
-      return res.status(404).json({ error: "게시물을 찾을 수 없습니다." });
-    }
-
-    if (post.username.toLowerCase() !== username.toLowerCase()) {
-      return res.status(403).json({ error: "삭제 권한이 없습니다." });
-    }
-
-    await Post.findByIdAndDelete(id);
-    res.json({ message: "게시물이 성공적으로 삭제되었습니다." });
+      res.status(200).json({ message: "게시물이 성공적으로 삭제되었습니다." });
   } catch (error) {
-    console.error('삭제 오류:', error);
-    res.status(500).json({ error: "게시물 삭제 중 오류가 발생했습니다." });
+      console.error('삭제 오류:', error);
+      res.status(500).json({ error: "게시물 삭제 중 오류가 발생했습니다." });
   }
 });
 
